@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+        <title>Lua Documentation</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <nav id="navbar">
+            <header>Lua Documentation</header>
+            <ul>
+                <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+                <li><a class="nav-link" href="#Values_and_Types">Values and Types</a></li>
+                <li><a class="nav-link" href="#Lexical_Conventions">Lexical Conventions</a></li>
+                <li><a class="nav-link" href="#Arithmetic_Operators">Arithmetic Operators</a></li>
+                <li><a class="nav-link" href="#Bitwise_Operators">Bitwise Operators</a></li>
+                <li><a class="nav-link" href="#Relational_Operators">Relational Operators</a></li>
+                <li><a class="nav-link" href="#Logical_Operators">Logical Operators</a></li>
+                <li><a class="nav-link" href="#Variables">Variables</a></li>
+                <li><a class="nav-link" href="#Reference">Reference</a></li>
+            </ul>
+        </nav>
+        <main id="main-doc">
+            <section class="main-section" id="Introduction">
+                <header>Introduction</header>
+                <article>
+                    <p>
+                        Lua is a powerful, efficient, lightweight, embeddable scripting language. 
+                        It supports procedural programming, object-oriented programming, functional 
+                        programming, data-driven programming, and data description.
+                    </p>
+                    <p>
+                        Lua combines simple procedural syntax with powerful data description constructs 
+                        based on associative arrays and extensible semantics. Lua is dynamically typed, 
+                        runs by interpreting bytecode with a register-based virtual machine, and has 
+                        automatic memory management with a generational garbage collection, making it ideal 
+                        for configuration, scripting, and rapid prototyping.
+                    </p>
+                    <p>
+                        Lua is implemented as a library, written in clean C, the common subset of Standard C 
+                        and C++. The Lua distribution includes a host program called lua, which uses the Lua 
+                        library to offer a complete, standalone Lua interpreter, for interactive or batch use. Lua is intended to be used both as a powerful, lightweight, embeddable scripting language for any program that needs one, and as a powerful but lightweight and efficient stand-alone language.
+                    </p>
+                    <p>
+                        As an extension language, Lua has no notion of a "main" program: it works embedded in 
+                        a host client, called the embedding program or simply the host. (Frequently, this 
+                        host is the stand-alone lua program.) The host program can invoke functions to 
+                        execute a piece of Lua code, can write and read Lua variables, and can register C 
+                        functions to be called by Lua code. Through the use of C functions, Lua can be 
+                        augmented to cope with a wide range of different domains, thus creating customized 
+                        programming languages sharing a syntactical framework.
+                    </p>
+                </article>
+            </section>
+            <section class="main-section" id="Values_and_Types">
+                <header>Values and Types</header>
+                <article>
+                    <p>
+                        Lua is a dynamically typed language. This means that variables do not have types; 
+                        only values do. There are no type definitions in the language. All values carry their 
+                        own type.
+                    </p>
+                    <p>
+                        All values in Lua are first-class values. This means that all values can be stored in 
+                        variables, passed as arguments to other functions, and returned as results.
+                    </p>
+                    <p>
+                        There are eight basic types in Lua: nil, boolean, number, string, function, userdata, 
+                        thread, and table. The type nil has one single value, nil, whose main property is to 
+                        be different from any other value; it often represents the absence of a useful value. 
+                        The type boolean has two values, false and true. Both nil and false make a condition 
+                        false; they are collectively called false values. Any other value makes a condition 
+                        true.
+                    </p>
+                </article>
+            </section>
+            <section class="main-section" id="Lexical_Conventions">
+                <header>Lexical Conventions</header>
+                <article>
+                    <p>
+                        Lua is a free-form language. It ignores spaces and comments between lexical elements 
+                        (tokens), except as delimiters between two tokens. In source code, Lua recognizes as 
+                        spaces the standard ASCII whitespace characters space, form feed, newline, carriage 
+                        return, horizontal tab, and vertical tab.
+                    </p>
+                    <p>
+                        Names (also called identifiers) in Lua can be any string of Latin letters, 
+                        Arabic-Indic digits, and underscores, not beginning with a digit and not being a 
+                        reserved word. Identifiers are used to name variables, table fields, and labels.
+                    </p>
+                    <p>
+                        The following keywords are reserved and cannot be used as names:
+                    </p>
+                    <ul class="container-syntax">
+                        <li>and</li>
+                        <li>break</li>
+                        <li>do</li>
+                        <li>else</li>
+                        <li>elseif</li>
+                        <li>end</li>
+                        <li>false</li>
+                        <li>for</li>
+                        <li>function</li>
+                        <li>goto</li>
+                        <li>if</li>
+                        <li>in</li>
+                        <li>local</li>
+                        <li>nil</li>
+                        <li>not</li>
+                        <li>or</li>
+                        <li>repeat</li>
+                        <li>return</li>
+                        <li>then</li>
+                        <li>true</li>
+                        <li>until</li>
+                        <li>while</li>
+                    </ul>
+                    <p>
+                        Lua is a case-sensitive language: and is a reserved word, but And and AND are two 
+                        different, valid names. As a convention, programs should avoid creating names that 
+                        start with an underscore followed by one or more uppercase letters (such as _VERSION).
+                    </p>
+                    <p>
+                        The following strings denote other tokens:
+                    </p>
+                    <ul class="container-syntax">
+                        <li>+</li>
+                        <li>-</li>
+                        <li>*</li>
+                        <li>/</li>
+                        <li>%</li>
+                        <li>^</li>
+                        <li>#</li>
+                        <li>&</li>
+                        <li>~</li>
+                        <li>|</li>
+                        <li><<</li>
+                        <li>>></li>
+                        <li>//</li>
+                        <li>    </li>
+                        <li>==</li>
+                        <li>~=</li>
+                        <li><=</li>
+                        <li>>=</li>
+                        <li><</li>
+                        <li>></li>
+                        <li>=</li>
+                        <li>(</li>
+                        <li>)</li>
+                        <li>{</li>
+                        <li>}</li>
+                        <li>[</li>
+                        <li>]</li>
+                        <li>::</li>
+                        <li>;</li>
+                        <li>:</li>
+                        <li>,</li>
+                        <li>.</li>
+                        <li>..</li>
+                        <li>...</li>
+                    </ul>
+                </article>
+            </section>
+            <section class="main-section" id="Arithmetic_Operators">
+                <header>Arithmetic Operators</header>
+                <article>
+                    <p>
+                        Lua supports the following arithmetic operators:
+                    </p>
+                    <ul class="container-list">
+                        <li>+: addition</li>
+                        <li>-: subtraction</li>
+                        <li>*: multiplication</li>
+                        <li>/: float division</li>
+                        <li>//: floor division</li>
+                        <li>%: modulo</li>
+                        <li>^: exponentiation</li>
+                        <li>-: unary minus</li>
+                    </ul>
+                    <p>
+                        With the exception of exponentiation and float division, the arithmetic operators 
+                        work as follows: If both operands are integers, the operation is performed over 
+                        integers and the result is an integer. Otherwise, if both operands are numbers, 
+                        then they are converted to floats, the operation is performed following the machine's 
+                        rules for floating-point arithmetic (usually the IEEE 754 standard), and the result 
+                        is a float.
+                    </p>
+                    <p>
+                        Exponentiation and float division (/) always convert their operands to floats and 
+                        the result is always a float. Exponentiation uses the ISO C function pow, so that 
+                        it works for non-integer exponents too.
+                    </p>
+                    <p>
+                        Floor division (//) is a division that rounds the quotient towards minus infinity, 
+                        resulting in the floor of the division of its operands.
+                    </p>
+                    <p>
+                        Modulo is defined as the remainder of a division that rounds the quotient towards 
+                        minus infinity (floor division).
+                    </p>
+                    <p>
+                        In case of overflows in integer arithmetic, all operations wrap around.
+                    </p>
+                </article>
+            </section>
+            <section class="main-section" id="Bitwise_Operators">
+                <header>Bitwise Operators</header>
+                <article>
+                    <p>
+                        Lua supports the following bitwise operators:
+                    </p>
+                    <ul class="container-list">
+                        <li>&: bitwise AND</li>
+                        <li>|: bitwise OR</li>
+                        <li>~: bitwise exclusive OR</li>
+                        <li>>>: right shift</li>
+                        <li><<: left shift</li>
+                        <li>~: unary bitwise NOT</li>
+                    </ul>
+                    <p>
+                        All bitwise operations convert its operands to integers (see §3.4.3), 
+                        operate on all bits of those integers, and result in an integer.
+                    </p>
+                    <p>
+                        Both right and left shifts fill the vacant bits with zeros. Negative displacements 
+                        shift to the other direction; displacements with absolute values equal to or higher 
+                        than the number of bits in an integer result in zero (as all bits are shifted out).
+                    </p>
+                </article>
+            </section>
+            <section class="main-section" id="Relational_Operators">
+                <header>Relational Operators</header>
+                <article>
+                    <p>
+                        Lua supports the following relational operators:
+                    </p>
+                    <ul class="container-list">
+                        <li>==: equality</li>
+                        <li>~=: inequality</li>
+                        <li><: less than</li>
+                        <li>>: greater than</li>
+                        <li><=: less or equal</li>
+                        <li>>=: greater or equal</li>
+                    </ul>
+                    <p>
+                        These operators always result in false or true.
+                    </p>
+                    <p>
+                        Equality (==) first compares the type of its operands. If the types are different, 
+                        then the result is false. Otherwise, the values of the operands are compared. Strings 
+                        are equal if they have the same byte content. Numbers are equal if they denote the 
+                        same mathematical value.
+                    </p>
+                    <p>
+                        Tables, userdata, and threads are compared by reference: two objects are considered 
+                        equal only if they are the same object. Every time you create a new object (a table, 
+                        a userdata, or a thread), this new object is different from any previously existing 
+                        object. A function is always equal to itself. Functions with any detectable 
+                        difference (different behavior, different definition) are always different. 
+                        Functions created at different times but with no detectable differences may be 
+                        classified as equal or not (depending on internal caching details).
+                    </p>
+                    <p>
+                        You can change the way that Lua compares tables and userdata by using the __eq 
+                        metamethod.
+                    </p>
+                    <p>
+                        Equality comparisons do not convert strings to numbers or vice versa. Thus, 
+                        "0"==0 evaluates to false, and t[0] and t["0"] denote different entries in a table.
+                    </p>
+                    <p>
+                        The operator ~= is exactly the negation of equality (==).
+                    </p>
+                    <p>
+                        The order operators work as follows. If both arguments are numbers, then they are 
+                        compared according to their mathematical values, regardless of their subtypes. 
+                        Otherwise, if both arguments are strings, then their values are compared according 
+                        to the current locale. Otherwise, Lua tries to call the __lt or the __le metamethod. 
+                        A comparison a > b is translated to b < a and a >= b is translated to b <= a.
+                    </p>
+                    <p>
+                        Following the IEEE 754 standard, the special value NaN is considered neither less 
+                        than, nor equal to, nor greater than any value, including itself.
+                    </p>
+                </article>
+            </section>
+            <section class="main-section" id="Logical_Operators">
+                <header>Logical Operators</header>
+                <article>
+                    <p>
+                        The logical operators in Lua are and, or, and not. Like the control structures, 
+                        all logical operators consider both false and nil as false and anything else as true.
+                    </p>
+                    <p>
+                        The negation operator not always returns false or true. The conjunction operator and 
+                        returns its first argument if this value is false or nil; otherwise, and returns its 
+                        second argument. The disjunction operator or returns its first argument if this value 
+                        is different from nil and false; otherwise, or returns its second argument. Both and 
+                        and or use short-circuit evaluation; that is, the second operand is evaluated only if 
+                        necessary. Here are some examples:
+                    </p>
+                    <div class="container-code">
+                        <code>10 or 20            <span>--> 10</span></code>
+                        <code>10 or error()       <span>--> 10</span></code>
+                        <code>nil or "a"          <span>--> "a"</span></code>
+                        <code>nil and 10          <span>--> nil</span></code>
+                        <code>false and error()   <span>--> false</span></code>
+                        <code>false and nil       <span>--> false</span></code>
+                        <code>false or nil        <span>--> nil</span></code>
+                        <code>10 and 20           <span>--> 20</span></code>
+                    </div>
+                </article>
+            </section>
+            <section class="main-section" id="Variables">
+                <header>Variables</header>
+                <article>
+                    <p>
+                        Variables are places that store values. There are three kinds of variables in Lua: 
+                        global variables, local variables, and table fields.
+                    </p>
+                    <p>
+                        A single name can denote a global variable or a local variable (or a function's 
+                        formal parameter, which is a particular kind of local variable):
+                    </p>
+                    <div class="container-code">
+                        <code>var ::= Name</code>
+                    </div>
+                    <p>
+                        Any variable name is assumed to be global unless explicitly declared as a local. 
+                        Local variables are lexically scoped: local variables can be freely accessed by 
+                        functions defined inside their scope.
+                    </p>
+                    <p>
+                        Before the first assignment to a variable, its value is nil.
+                    </p>
+                    <p>
+                        Square brackets are used to index a table:
+                    </p>
+                    <div class="container-code">
+                        <code>var ::= prefixexp '[' exp ']'</code>
+                    </div>
+                    <p>
+                        The meaning of accesses to table fields can be changed via metatables.
+                    </p>
+                    <p>
+                        The syntax var.Name is just syntactic sugar for var["Name"]:
+                    </p>
+                    <div class="container-code">
+                        <code>var ::= prefixexp '.' Name</code>
+                    </div>
+                    <p>
+                        An access to a global variable x is equivalent to _ENV.x. Due to the way that chunks 
+                        are compiled, the variable _ENV itself is never global.
+                    </p>
+                </article>
+            </section>
+            <section class="main-section" id="Reference">
+                <header>Reference</header>
+                <article>
+                    <p>
+                        All the documentation in this page is taken from <a href="https://devdocs.io/lua~5.4/" target="_blank">here</a>
+                    </p>
+                </article>
+            </section>
+        </main>
+    </body>
+</html>
